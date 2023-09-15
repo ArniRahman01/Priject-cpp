@@ -3,30 +3,50 @@
 using namespace std;
 
 
+// Interface - pure abstrace class
 class Interface {
 
     public:
+    
+        // Pure Virtual Function
         virtual void display() = 0;
 };
 
 
+
+// Base Class
 class Temparature : public Interface{
 
     protected:
-        float value;
+        float value; // Only accesible from derived class (Protected)
+        float temp;  // Encapsulated access Modifier, does nothing
 
     public:
 
+        // Default Constructor;
+        Temparature(){}
+
+
+        // Constructor
         Temparature(float data): value(data) {};
 
+        // Destructor
+        virtual ~Temparature() = default;
+
+
+        // Get and Set Method does nothing
+        // Get and Set Method for Private (Encapsulated Attribute).
         float getTemparature(){
-            return value;
+            return temp;
             }
         void setTemparature(float data){
-            value = data;
+            temp = data;
         }
 };
 
+
+// Derived Class - Celcius
+// Single Inheritance
 class Celcius : public Temparature{
     
     public : 
@@ -42,6 +62,9 @@ class Celcius : public Temparature{
 
 };
 
+
+// Derived Class - FarenHeight
+// Single Inheritance
 class FarenHeight : public Temparature{
     
     public : 
@@ -70,7 +93,7 @@ class  StudentDetails {
 void StudentDetails::studentDetails(){
     cout << endl;
     cout << "Name: Hafeza Rahman Arni" << endl;
-    cout << "Student ID: \" ..... \" "<< endl;
+    cout << "Student ID: \"41220300619\" "<< endl;
     cout << "Email: hafeza0130230@gmaiil.com" << endl;
     cout << "\n-----------------------------------------\n";
 
@@ -84,8 +107,8 @@ int userOptionChoose(){
         int choose;
         
         cout << "please Choose your Option: "<<endl;
-        cout << "1. Celcius To Farenheight" << endl;
-        cout << "2. Farenheight to Celcius" << endl;
+        cout << "1. Farenheight to Celcius" << endl;
+        cout << "2. Celcius To Farenheight" << endl;
 
         cin >> choose;
         return choose;
@@ -104,17 +127,17 @@ int main(){
 
     option = userOptionChoose();
     if(option == 2){
-        cout << "Please choose your desire temparature to convert in Celcius: ";
+        cout << "Please choose your desire temparature in Celcius to convert in Farenheight: ";
         int temp ;
         cin>>temp;
-        Celcius celcius(temp);
+        Celcius celcius(temp);   // Create object of Celcius
         celcius.display();
     }
     else if(option == 1){
-        cout << "Please choose your desire temparature to convert in FarenHeight: ";
+        cout << "Please choose your desire temparature in Farenheight to convert in Celcius: ";
         int temp;
         cin>>temp;
-        FarenHeight farenheight(temp);
+        FarenHeight farenheight(temp); // Create object of Farenheight
         farenheight.display();
     }
     else{
